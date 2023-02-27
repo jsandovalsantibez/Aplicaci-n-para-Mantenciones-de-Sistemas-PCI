@@ -1,77 +1,86 @@
 import React from 'react';
 import {
-  ImageBackground,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   View,
   Text,
+  Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 
 const Perfil = ({navigation}) => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>coloca acá el perfil amermelá</Text>
+  
+  <View style={[ styles.container,
+    {
+      flexDirection: 'column',
+    },
+  ]}>
+    
+    <View style={[ styles.imageContainer,
+    {
+      flexDirection: 'column',
+    }
+    ]}>
+   
+    <Image source ={require('../../assets/user2.png')} style={{width: 100, height: 100, marginTop: '10%'}}/>
+    <Text style={{flex: 0.8, backgroundColor: '#465679', color: 'white', fontSize: 22, textAlign: 'center', textAlignVertical: 'center', fontWeight: "bold"}}> 
+     Kokensio </Text>
+    
     </View>
-  );
-};
-const style = StyleSheet.create({
-  bookNowBtn: {
-    height: 50,
-    width: 150,
-    backgroundColor: COLORS.white,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 
-  iconContainer: {
-    height: 60,
-    width: 60,
-    position: 'absolute',
-    top: -30,
-    backgroundColor: COLORS.white,
-    borderRadius: 30,
-    right: 20,
-    elevation: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  detailsContainer: {
-    top: -30,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    paddingVertical: 40,
-    paddingHorizontal: 20,
-    backgroundColor: COLORS.white,
-    flex: 0.3,
-  },
-  header: {
-    marginTop: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-  },
-  imageDetails: {
-    padding: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    position: 'absolute',
-    bottom: 30,
-  },
-  footer: {
-    flexDirection: 'row',
-    backgroundColor: COLORS.primary,
-    height: 70,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-  },
+
+   
+    <View style={styles.infoContainer}>
+    
+    <Text style= {{fontSize: 18, marginLeft: 80, marginBottom: 50, color: "#465679", fontWeight: "bold"}}><Image source={require('../../assets/maletin.png')} style={styles.icons}/>    cargo
+</Text>
+    <Text style= {{fontSize: 18, marginLeft: 80, marginBottom: 50, color: "#465679", fontWeight: "bold"}}><Image source={require('../../assets/correo-electronico.png')} style={styles.icons}/>    correo
+    </Text>
+    <Text style= {{fontSize: 18, marginLeft: 80, marginBottom: 50, color: "#465679", fontWeight: "bold"}}><Image source={require('../../assets/telefono.png')} style={styles.icons}/>    Teléfono
+    </Text>
+   
+
+    </View>
+    </View>
+);
+
+};
+const styles = StyleSheet.create({
+  container: {
+  flex:1,
+  backgroundColor: "#465679"
+},
+
+imageContainer: {
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#465679",
+  flex: 0.8,
+
+
+},
+
+infoContainer: {
+flexDirection: "column",
+backgroundColor: "#E4E5E7",
+flex: 2,
+justifyContent: "center",
+borderTopStartRadius: 50,
+borderTopEndRadius: 50 
+},
+icons: {
+width: 25,
+height: 25
+}
+
 });
 
+
+
+
 export default Perfil;
+

@@ -19,12 +19,12 @@ export default Boton;
 
 const style = StyleSheet.create({
     buttonContainer: {
-        backgroundColor: 'grey',
+        backgroundColor: '#34434D',
         marginBottom: 10,
-        paddingHorizontal: 140,
+        paddingHorizontal: 150,
         paddingVertical: 15,
         borderRadius: 10,
-        margin: 40,
+        margin: 35,
     },
 
     buttonText: {
