@@ -158,13 +158,15 @@ class Login extends React.Component{
           secureTextEntry={true}
           style={styles.textInput}
           />
-      <Button
-      title = "Iniciar sesión"
-      color = "#34434D"
-      onPress = { /*this.Logear */() =>{
-        this.props.navigation.navigate('HomeScreen')
-      }
-      }/>
+      <TouchableOpacity style = {{...styles.Button}} onPress ={() =>{this.props.navigation.navigate('HomeScreen')}}>
+        <Text
+          style = {{
+            ...styles.ButtonText,
+          }}
+        >
+          Iniciar Sesión 
+        </Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
       </View>
     </View>
@@ -224,9 +226,20 @@ const styles = StyleSheet.create({
     marginVertical: 10
 
   },
-
   logo:{
     alignItems: 'flex-end'
   },
+  Button:{
+    alignSelf: 'center',
+    marginTop: 15,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: '#34434D',
+    width: '50%',
+  },
+  ButtonText:{
+    textAlign: 'center',
+    color: '#f1f1f1',
+  }
 
 });

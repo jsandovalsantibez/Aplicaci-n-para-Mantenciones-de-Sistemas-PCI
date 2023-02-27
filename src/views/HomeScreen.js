@@ -24,7 +24,8 @@ const {width} = Dimensions.get('screen');
 const HomeScreen = ({navigation}) => {
   const categoryIcons = [
       <Icon name="home" size={27} color={COLORS.primary} onPress={() => navigation.navigate('DetailsScreen')}/>,
-      <Icon name="list" size={27} color={COLORS.primary} />,
+      <Icon name="list" size={27} color={COLORS.primary} onPress={() => navigation.navigate('DocGeneration')}/>,
+      <Icon name="list" size={27} color={COLORS.primary} onPress={() => navigation.navigate('Mantencion')}/>,
       <Icon name="account-circle" size={27} color={COLORS.primary} onPress={() => navigation.navigate('PerfilScreen')}/>,
   ];
   const ListCategories = () => {
@@ -149,18 +150,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
   },
-  inputContainer: {
-    height: 50,
-    width: '100%',
-    backgroundColor: COLORS.white,
-    borderRadius: 10,
-    position: 'absolute',
-    top: 90,
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    elevation: 12,
-  },
   categoryContainer: {
     marginTop: 60,
     marginHorizontal: 60,
@@ -199,16 +188,3 @@ const style = StyleSheet.create({
   },
 });
 export default HomeScreen;
-
-/*
-
-<View style={style.header}>
-        <Icon name="sort" size={28} color={COLORS.white} />
-        <Icon name="notifications-none" size={28} color={COLORS.white} />
-      </View>
-
-
-      <Icon name="home" size={25} color={COLORS.primary} />,
-    <Icon name="list" size={25} color={COLORS.primary} />,
-    <Icon name="account-circle" size={25} color={COLORS.primary} onPress={() => navigation.push('Perfil')}/>,
-      */
