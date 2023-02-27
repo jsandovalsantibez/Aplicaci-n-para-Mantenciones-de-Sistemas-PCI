@@ -6,6 +6,9 @@ import OnBoardScreen from './src/views/LoginBoardScreen';
 import HomeScreen from './src/views/HomeScreen';
 import DetailsScreen from './src/views/DetailsScreen';
 import Perfil from './src/views/PerfilScreen';
+import DocGeneration from './src/views/DocGeneration';
+
+
 
 const Stack = createStackNavigator();
 
@@ -17,6 +20,7 @@ const App = () => {
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         <Stack.Screen name="PerfilScreen" component={Perfil} />
+        <Stack.Screen name="DocGeneration" component={DocGeneration} />
       </Stack.Navigator>
     </NavigationContainer>
   );
