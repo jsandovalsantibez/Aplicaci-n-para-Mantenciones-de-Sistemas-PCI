@@ -7,6 +7,10 @@ import HomeScreen from './src/views/HomeScreen';
 import DetailsScreen from './src/views/DetailsScreen';
 import Perfil from './src/views/PerfilScreen';
 import DocGeneration from './src/views/DocGeneration';
+import Mantencion from './src/views/Mantencion';
+import Dispositivos from './src/views/Dispositivos';
+import DISextincion from './src/views/DISextincion';
+import Audio from './src/views/Audio';
 
 
 
@@ -21,6 +25,11 @@ const App = () => {
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         <Stack.Screen name="PerfilScreen" component={Perfil} />
         <Stack.Screen name="DocGeneration" component={DocGeneration} />
+        <Stack.Screen name="Mantencion" component={Mantencion} />
+        <Stack.Screen name="Dispositivos" component={Dispositivos} />
+        <Stack.Screen name="DISextincion" component={DISextincion} />
+        <Stack.Screen name="Audio" component={Audio} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
