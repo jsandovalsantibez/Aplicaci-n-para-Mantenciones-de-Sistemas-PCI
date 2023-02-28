@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput, Keyboard, 
-    Platform, SafeAreaView, ScrollView, Alert, Modal } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Button, 
+  TextInput, 
+  Keyboard, 
+  ScrollView, 
+  Modal } from 'react-native';
 
 function Table(props) {
-    
     const { data } = props;
 
-    
     const [selectedItem, setSelectedItem] = useState(null);
 
     const [inputDetalle, setDetalle] = useState('');
@@ -15,15 +20,10 @@ function Table(props) {
 
     const Boton_OK = (item)=>{
         //Alert.alert(item.identificador);
-
-
         var ident = item.identificador;
         var loca = item.localizacion;
-
         var datosEnviar = {ident, loca};
         console.log(datosEnviar);
-        
-
 
         fetch("http://192.168.0.154/ingelecsa/dispositivos/?update1=1",{
         method:"POST",
@@ -36,12 +36,8 @@ function Table(props) {
     .catch((error)=>{
       console.log(error);
   })
-
-
-
-        
+ 
     };
-
     const Boton_Problema = (item)=>{
       var identi = item.identificador;
 
@@ -102,38 +98,30 @@ function Table(props) {
         ))}
         
         <Modal visible={showModal} animationType="slide">
-        <View style={styles.modal}>
-          <Text style={styles.modalTitle}>Ingrese detalles:</Text>
-
-          <TextInput style={styles.input} placeholder="Detalle" 
-          onChangeText={(inputDetalle)=> setDetalle(inputDetalle)}/>
-          
-          <TextInput style={styles.input} placeholder="Foto" />
-
-          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <Button title="Cancelar" onPress={handleModalClose} />
-            <Button title="guardar" onPress={handleSave} />
-          </View>
-        </View>
-      </Modal>
-      
+          <View style={styles.modal}>
+            <Text style={styles.modalTitle}>Ingrese detalles:</Text>
+            <TextInput style={styles.input} placeholder="Detalle" 
+            onChangeText={(inputDetalle)=> setDetalle(inputDetalle)}/>
+            <TextInput style={styles.input} placeholder="Foto" />
+              <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                <Button title="Cancelar" onPress={handleModalClose} />
+                <Button title="guardar" onPress={handleSave} />
+              </View>
+            </View>
+          </Modal>
       </View>
-      </ScrollView>
+    </ScrollView>
     );
   }
-
 
 class Dispositivos extends React.Component{
     constructor(props){
         super(props)
-        
         this.state={
-            
             dispositivos: [],
             estado: '',
             detalle: '',
             api: "192.168.0.154"
-
         }
     }
 
@@ -147,10 +135,7 @@ componentDidMount(){
     })
     .then(respuesta=>respuesta.json())
     .then((datosRespuesta)=>{
-  
         this.setState({ dispositivos: datosRespuesta})
-
-        
     })
     .catch((error)=>{
         console.log(error);
@@ -160,17 +145,12 @@ componentDidMount(){
 render(){
     const { tienda } = this.props.route.params;
 
-
     return(
         <ScrollView>
-        <View style={styles.container}>
+          <View style={styles.container}>
             <Text>Tienda: {tienda}</Text>
-
             <Table data={this.state.dispositivos} />
-            
-            
-            
-        </View>
+          </View>
         </ScrollView>
     )
 }
@@ -178,47 +158,47 @@ render(){
 }export default Dispositivos;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1, 
-        padding: 16, 
-        paddingTop: 30, 
-        backgroundColor: '#fff' 
-    },
-    table: {
-      borderWidth: 1,
-      borderColor: 'black',
-      borderRadius: 4,
-      overflow: 'hidden',
-      marginVertical: 10,
-    },
-    row: {
-      flexDirection: 'row',
-      borderWidth: 1,
-      borderColor: 'black',
-      paddingVertical: 10,
-    },
-    headerCell: {
-      padding: 5,
-      backgroundColor: 'gray',
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      fontSize: 18,
-    },
-    cell: {
-      padding: 5,
-      textAlign: 'center',
-      fontSize: 12,
-    },
-    input:{
-      justifyContent: "center",
-      width: 350,
-      height: 35,
-      borderWidth: 1,
-      borderRadius: 10,
-      marginBottom: 8,
-      borderWidth: 1,
-      paddingLeft: 5,
+  container: {
+    flex: 1, 
+    padding: 16, 
+    paddingTop: 30, 
+    backgroundColor: '#fff' 
   },
-  });
+  table: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 4,
+    overflow: 'hidden',
+    marginVertical: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingVertical: 10,
+  },
+  headerCell: {
+    padding: 5,
+    backgroundColor: 'gray',
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  cell: {
+    padding: 5,
+    textAlign: 'center',
+    fontSize: 12,
+  },
+  input:{
+    justifyContent: "center",
+    width: 350,
+    height: 35,
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 8,
+    borderWidth: 1,
+    paddingLeft: 5,
+  },
+});
 

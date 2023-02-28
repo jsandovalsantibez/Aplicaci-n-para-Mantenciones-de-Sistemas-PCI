@@ -1,8 +1,14 @@
-import { StyleSheet, Text, View, Button, Keyboard, 
-    Platform, SafeAreaView, ScrollView } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Button, 
+  Keyboard, 
+  Platform, 
+  SafeAreaView, 
+  ScrollView } from 'react-native';
 import React from 'react';
 import { Picker } from '@react-native-picker/picker';
-
 
 class Mantencion extends React.Component{
     constructor(props){
@@ -16,8 +22,8 @@ class Mantencion extends React.Component{
             api: "192.168.0.154" //Depende de tu direccion IPv4
         }
     }
-cambioVista = ()=>{
 
+cambioVista = ()=>{
     const{seleccion_tienda, tipo} = this.state;
 
     if(tipo == 'deteccion'){
@@ -31,11 +37,7 @@ cambioVista = ()=>{
         {tienda: seleccion_tienda, Tipo: tipo})
 
     }
-
-    
 };
-
-
 
 componentDidMount() {
     const {api} = this.state;
@@ -49,20 +51,15 @@ componentDidMount() {
     })
 };
 
-
-
-
-
 render(){
-    
-
     let tienda = this.state.nombre_tiendas.map((seleccion_tienda)=>{
-        return(
-        <Picker.Item 
-            label={seleccion_tienda.nombre_tienda}
-            key={seleccion_tienda.cod_tienda} value={seleccion_tienda.nombre_tienda}></Picker.Item>
-            )
-        })
+      return(
+      <Picker.Item 
+          label={seleccion_tienda.nombre_tienda}
+          key={seleccion_tienda.cod_tienda} value={seleccion_tienda.nombre_tienda}></Picker.Item>
+              )
+      })
+
     return(
     <SafeAreaView style={styles.container}>
         <Text>Tienda: </Text>
@@ -72,7 +69,6 @@ render(){
             style={styles.textInput}>
                 {tienda}
         </Picker>
-        
         <Text>Tipo: </Text>
         <Picker selectedValue={this.state.tipo}
             onValueChange={(value) => this.setState({tipo:value})}>
@@ -80,7 +76,6 @@ render(){
                 <Picker.Item label='Extinción' value={"extincion"}/>
                 <Picker.Item label='Audio' value={"audio"}/>
         </Picker>
-
         <Button title='ir' onPress={this.cambioVista()}/>
             </SafeAreaView>
         )

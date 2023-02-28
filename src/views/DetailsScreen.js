@@ -10,7 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 
-const DetailsScreen = ({navigation, route}) => {
+const DetailsScreen = ({route}) => {
   const place = route.params;
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
@@ -55,6 +55,7 @@ const DetailsScreen = ({navigation, route}) => {
     </SafeAreaView>
   );
 };
+
 const style = StyleSheet.create({
   detailsContainer: {
     top: -30,

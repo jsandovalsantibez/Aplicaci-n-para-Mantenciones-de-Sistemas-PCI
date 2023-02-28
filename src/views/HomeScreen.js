@@ -4,18 +4,13 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  SectionList,
   View,
   Text,
-  TextInput,
   ImageBackground,
-  Image,
   FlatList,
   Dimensions,
   TouchableOpacity,
-  Button,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 import places from '../consts/places';
@@ -23,11 +18,12 @@ import places from '../consts/places';
 const {width} = Dimensions.get('screen');
 const HomeScreen = ({navigation}) => {
   const categoryIcons = [
-      <Icon name="home" size={27} color={COLORS.primary} onPress={() => navigation.navigate('DetailsScreen')}/>,
+      <Icon name="home" size={27} color={COLORS.primary} />,
       <Icon name="list" size={27} color={COLORS.primary} onPress={() => navigation.navigate('DocGeneration')}/>,
       <Icon name="list" size={27} color={COLORS.primary} onPress={() => navigation.navigate('Mantencion')}/>,
       <Icon name="account-circle" size={27} color={COLORS.primary} onPress={() => navigation.navigate('PerfilScreen')}/>,
   ];
+
   const ListCategories = () => {
     return (
       <View style={style.categoryContainer}>
@@ -54,7 +50,6 @@ const HomeScreen = ({navigation}) => {
               alignItems: 'flex-end',
             }}>
           </View>
-          
         </ImageBackground>
       </TouchableOpacity>
     );
@@ -94,6 +89,7 @@ const HomeScreen = ({navigation}) => {
       </SafeAreaView>
     );
   };
+  
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />

@@ -31,8 +31,6 @@ class DocGeneration extends React.Component{
 }
 
 componentDidMount() {
-
-
     const {api} = this.state;
     fetch('http://'+api+'/ingelecsa/tienda/')
     .then(respuesta=>respuesta.json())
@@ -46,7 +44,6 @@ componentDidMount() {
 };
 
 render(){
-
     enviarDatos = ()=> {
         Keyboard.dismiss();
 
@@ -56,8 +53,6 @@ render(){
         fecha_inicio, fecha_termino, criticidad, principal_problema,
         origen, recomendacion, ubicacion_problema} = this.state;
 
-        
-        
         var datosEnviar = {seleccion_tienda:seleccion_tienda, ubicacion:ubicacion,
         jefe_zonal:jefe_zonal, tipo_mant:tipo_mant, fecha_inicio:fecha_inicio,
         fecha_termino:fecha_termino, criticidad:criticidad, 
@@ -65,12 +60,11 @@ render(){
         origen:origen, recomendacion:recomendacion, 
         ubicacion_problema:ubicacion_problema};
             
-
         fetch('http://'+api+'/ingelecsa/informes/?insertar=1',{
             method:"POST",
             body:JSON.stringify(datosEnviar)
         }).then(respuesta=>respuesta.json())
-        .then((datosRespuesta)=>{
+          .then((datosRespuesta)=>{
             console.log(datosRespuesta);
             let wb = XLSX.utils.book_new();
             let ws = XLSX.utils.aoa_to_sheet([
@@ -94,9 +88,7 @@ render(){
         .catch(console.log);
     };
     
-
     let tienda = this.state.nombre_tiendas.map((seleccion_tienda)=>{
-        
         return(
             <Picker.Item 
             label={seleccion_tienda.nombre_tienda}
@@ -106,7 +98,7 @@ render(){
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
+          <ScrollView style={styles.scrollView}>
             <View style={styles.body}>
             <Text>Hoja de Servicio</Text>
             <Text>Datos Tienda</Text>
@@ -118,8 +110,7 @@ render(){
             style={styles.textInput}>
                 {tienda}
             </Picker>
-            
-
+        
             <Text>Ubicacion</Text>
             <TextInput
             style={styles.textInput}
@@ -147,7 +138,6 @@ render(){
             placeholder={"AA-MM-DD"}
             onChangeText={(fecha_termino)=> this.setState({fecha_termino})}/>
             
-     
                 <Text>Observaciones</Text>
 
                 <Text>Criticidad</Text>
@@ -175,45 +165,42 @@ render(){
                 style={styles.textInput}
                 onChangeText={(ubicacion_problema)=> this.setState({ubicacion_problema})}/>
 
-
             <Button title="Enviar Informe" onPress={enviarDatos} />
-            
             <StatusBar style="auto"/>
             </View>
             <View>
                 <Text> </Text>
                 <Text> </Text>
             </View>
-            </ScrollView>
+          </ScrollView>
         </SafeAreaView>
-          );
-        }
+      );
+    }
         
-    
 }export default DocGeneration;
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop: Platform.OS === "android" ? 35:0,
-    },
-    body: {
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    textInput:{
-        justifyContent: "center",
-        width: 350,
-        height: 35,
-        borderWidth: 1,
-        borderRadius: 10,
-        marginBottom: 8,
-        borderWidth: 1,
-        paddingLeft: 5,
-    },
-    scrollView: {
-        marginHorizontal: 20,
-        marginTop:2
-    }
+  container: {
+    flex: 1,
+    marginTop: Platform.OS === "android" ? 35:0,
+  },
+  body: {
+      justifyContent: "center",
+      alignItems: "center"
+  },
+  textInput:{
+      justifyContent: "center",
+      width: 350,
+      height: 35,
+      borderWidth: 1,
+      borderRadius: 10,
+      marginBottom: 8,
+      borderWidth: 1,
+      paddingLeft: 5,
+  },
+  scrollView: {
+      marginHorizontal: 20,
+      marginTop:2
+  }
   });
 

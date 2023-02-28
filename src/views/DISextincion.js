@@ -1,25 +1,26 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput, Keyboard, Platform, SafeAreaView, ScrollView, Alert, Modal } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Button, 
+  TextInput, 
+  Keyboard,  
+  ScrollView, 
+  Modal } from 'react-native';
 
 function Table(props) {
-    
     const { data } = props;
 
-    
     const [selectedItem, setSelectedItem] = useState(null);
 
     const [showModal, setShowModal] = useState(false);
 
     const Boton_OK = (item)=>{
         //Alert.alert(item.id_ext);
-
-
-        
     };
 
     const Boton_Problema = (item)=>{
-
-
         setSelectedItem(item);
         setShowModal(true);
     };
@@ -79,20 +80,13 @@ function Table(props) {
       </ScrollView>
     );
   }
-
-
-
-
     
 class DISextincion extends React.Component{
     constructor(props){
         super(props)
-        
         this.state={
-            
             dis_extincion: [],
             api: "192.168.0.154" //cambiar a ip correspondiente
-
         }
     }
 
@@ -107,64 +101,60 @@ componentDidMount(){
     .then(respuesta=>respuesta.json())
     .then((datosRespuesta)=>{
         console.log(datosRespuesta);
-        this.setState({ dis_extincion: datosRespuesta})
-
-        
+        this.setState({ dis_extincion: datosRespuesta})   
     })
     .catch((error)=>{
         console.log(error);
     })
-};
+  };
 
 render(){
     const { tienda } = this.props.route.params;
 
-
     return(
         <ScrollView>
-        <View style={styles.container}>
+          <View style={styles.container}>
             <Text>Tienda: {tienda}</Text>
             <Table data={this.state.dis_extincion} />
- 
-        </View>
+          </View>
         </ScrollView>
     )
-}
+  }
     
 }export default DISextincion;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1, 
-        padding: 16, 
-        paddingTop: 30, 
-        backgroundColor: '#fff' 
-    },
-    table: {
-      borderWidth: 1,
-      borderColor: 'black',
-      borderRadius: 4,
-      overflow: 'hidden',
-      marginVertical: 10,
-    },
-    row: {
-      flexDirection: 'row',
-      borderWidth: 1,
-      borderColor: 'black',
-      paddingVertical: 10,
-    },
-    headerCell: {
-      padding: 5,
-      backgroundColor: 'gray',
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      fontSize: 18,
-    },
-    cell: {
-      padding: 5,
-      textAlign: 'center',
-      fontSize: 12,
-    },
-  });
+  container: {
+    flex: 1, 
+    padding: 16, 
+    paddingTop: 30, 
+    backgroundColor: '#fff' 
+  },
+  table: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 4,
+    overflow: 'hidden',
+    marginVertical: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingVertical: 10,
+  },
+  headerCell: {
+    padding: 5,
+    backgroundColor: 'gray',
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  cell: {
+    padding: 5,
+    textAlign: 'center',
+    fontSize: 12,
+  },
+});
 

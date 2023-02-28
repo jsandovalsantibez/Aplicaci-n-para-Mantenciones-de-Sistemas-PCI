@@ -2,24 +2,17 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Keyboard, Platform, SafeAreaView, ScrollView, Alert, Modal } from 'react-native';
 
 function Table(props) {
-    
     const { data } = props;
 
-    
     const [selectedItem, setSelectedItem] = useState(null);
 
     const [showModal, setShowModal] = useState(false);
 
     const Boton_OK = (item)=>{
         //Alert.alert(item.id_dip_audio);
-
-
-        
     };
 
     const Boton_Problema = (item)=>{
-
-
         setSelectedItem(item);
         setShowModal(true);
     };
@@ -37,58 +30,50 @@ function Table(props) {
     };
   
     return (
-    <ScrollView horizontal={true}>
-      <View style={styles.table}>
-        <View style={styles.row}>
-          <Text style={[styles.headerCell, { flex: 2 }]}>Localizacion</Text>
-          <Text style={[styles.headerCell, { flex: 2 }]}>Estado</Text>
-          <Text style={[styles.headerCell, { flex: 1 }]}>Revision</Text>
-          <Text style={[styles.headerCell, { flex: 1 }]}>Error</Text>
+      <ScrollView horizontal={true}>
+        <View style={styles.table}>
+          <View style={styles.row}>
+            <Text style={[styles.headerCell, { flex: 2 }]}>Localizacion</Text>
+            <Text style={[styles.headerCell, { flex: 2 }]}>Estado</Text>
+            <Text style={[styles.headerCell, { flex: 1 }]}>Revision</Text>
+            <Text style={[styles.headerCell, { flex: 1 }]}>Error</Text>
+          </View>
+          {data.map((item, index) => (
+            <View key={index} style={[
+              styles.row,
+              index % 2 === 0 ? { backgroundColor: '#f2f2f2' } : null,
+            ]}>
+              <Text style={[styles.cell, { flex: 2 }]}>{item.localizacion}</Text>
+              <Text style={[styles.cell, { flex: 2 }]}>{item.estado}</Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', flex: 2 }}>
+              <Button title=" Revisado" onPress={() => Boton_OK(item)} />
+              <Button title=" Error" onPress={() => Boton_Problema(item)} />
+            </View>
+            </View>
+          ))}
+          <Modal visible={showModal} animationType="slide">
+            <View style={styles.modal}>
+              <Text style={styles.modalTitle}>Enter Details:</Text>
+              <TextInput style={styles.input} placeholder="Name" />
+              <TextInput style={styles.input} placeholder="Age" />
+              <TextInput style={styles.input} placeholder="City" />
+              <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                <Button title="Cancelar" onPress={handleModalClose} />
+                <Button title="guardar" onPress={handleSave} />
+              </View>
+            </View>
+          </Modal>
         </View>
-        {data.map((item, index) => (
-          <View key={index} style={[
-            styles.row,
-            index % 2 === 0 ? { backgroundColor: '#f2f2f2' } : null,
-          ]}>
-            <Text style={[styles.cell, { flex: 2 }]}>{item.localizacion}</Text>
-            <Text style={[styles.cell, { flex: 2 }]}>{item.estado}</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', flex: 2 }}>
-            <Button title=" Revisado" onPress={() => Boton_OK(item)} />
-            <Button title=" Error" onPress={() => Boton_Problema(item)} />
-          </View>
-          </View>
-          
-        ))}
-        
-        <Modal visible={showModal} animationType="slide">
-        <View style={styles.modal}>
-          <Text style={styles.modalTitle}>Enter Details:</Text>
-          <TextInput style={styles.input} placeholder="Name" />
-          <TextInput style={styles.input} placeholder="Age" />
-          <TextInput style={styles.input} placeholder="City" />
-          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <Button title="Cancelar" onPress={handleModalClose} />
-            <Button title="guardar" onPress={handleSave} />
-          </View>
-        </View>
-      </Modal>
-      
-      </View>
       </ScrollView>
     );
   }
 
-
-
 class Audio extends React.Component{
     constructor(props){
-        super(props)
-        
-        this.state={
-            
+        super(props) 
+        this.state={           
             dis_audio: [],
             api: "192.168.0.154" //cambiar a ip correspondiente
-
         }
     }
 
@@ -104,8 +89,6 @@ componentDidMount(){
     .then((datosRespuesta)=>{
         console.log(datosRespuesta);
         this.setState({ dis_audio: datosRespuesta})
-
-        
     })
     .catch((error)=>{
         console.log(error);
@@ -115,18 +98,12 @@ componentDidMount(){
 render(){
     const { tienda } = this.props.route.params;
 
-
     return(
         <ScrollView>
-        <View style={styles.container}>
+          <View style={styles.container}>
             <Text>Tienda: {tienda}</Text>
-            <Table data={this.state.dis_audio} />
-
-            
-            
-            
-            
-        </View>
+            <Table data={this.state.dis_audio} /> 
+          </View>
         </ScrollView>
     )
 }
@@ -134,37 +111,37 @@ render(){
 }export default Audio;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1, 
-        padding: 16, 
-        paddingTop: 30, 
-        backgroundColor: '#fff' 
-    },
-    table: {
-      borderWidth: 1,
-      borderColor: 'black',
-      borderRadius: 4,
-      overflow: 'hidden',
-      marginVertical: 10,
-    },
-    row: {
-      flexDirection: 'row',
-      borderWidth: 1,
-      borderColor: 'black',
-      paddingVertical: 10,
-    },
-    headerCell: {
-      padding: 5,
-      backgroundColor: 'gray',
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      fontSize: 18,
-    },
-    cell: {
-      padding: 5,
-      textAlign: 'center',
-      fontSize: 12,
-    },
-  });
+  container: {
+    flex: 1, 
+    padding: 16, 
+    paddingTop: 30, 
+    backgroundColor: '#fff' 
+  },
+  table: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 4,
+    overflow: 'hidden',
+    marginVertical: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingVertical: 10,
+  },
+  headerCell: {
+    padding: 5,
+    backgroundColor: 'gray',
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  cell: {
+    padding: 5,
+    textAlign: 'center',
+    fontSize: 12,
+  },
+});
 
