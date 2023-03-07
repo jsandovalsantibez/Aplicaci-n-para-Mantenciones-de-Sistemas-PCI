@@ -30,17 +30,7 @@ const DetailsScreen = ({route}) => {
         </View>
       </ImageBackground>
       <View style={style.detailsContainer}>
-        <View style={{flexDirection: 'row', marginTop: 10}}>
-          <Icon name="place" size={28} color={COLORS.primary} />
-          <Text
-            style={{
-              marginLeft: 5,
-              fontSize: 20,
-              fontWeight: 'bold',
-              color: COLORS.primary,
-            }}>
-            {place.location}
-          </Text>
+        <View style={{flexDirection: 'row'}}>
         </View>
         <Text style={{marginTop: 20, fontWeight: 'bold', fontSize: 20}}>
           Acerca de:
